@@ -4,17 +4,24 @@ package main
 
 import "fmt"
 
+type p interface {
+	pretty()
+}
+
 // duration is a type with a base type of int.
-type duration int
+type duration struct {
+	d int
+}
 
 // format pretty-prints the duration value.
-func (d *duration) pretty() string {
-	return fmt.Sprintf("Duration: %d", *d)
+func (d *duration) pretty() {
+	fmt.Printf("Duration: %d", d.d)
 }
 
 // main is the entry point for the application.
 func main() {
-	duration(42).pretty()
+	d := duration{42}
+	d.pretty()
 
 	// ./listing46.go:17: cannot call pointer method on duration(42)
 	// ./listing46.go:17: cannot take the address of duration(42)
